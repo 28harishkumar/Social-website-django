@@ -1,0 +1,98 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	  	<meta charset="utf-8">
+	    <title>{% block title %}Social Website{% endblock %}</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="{% block description %}This is demo of social website{% endblock %}">
+	    <meta name="author" content="Harish Kumar">
+	
+	    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.ico">
+	    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+	    <link href="{{ STATIC_URL }}css/font-awesome.min.css" rel="stylesheet">
+	    <style type="text/css">
+	      body {
+	        padding-top: 60px;
+	        padding-bottom: 40px;
+	      }
+	    </style>
+  	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+			    <div class="navbar-header">
+			        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+			       	<a class="navbar-brand" href="{% url 'index' %}">Social website</a>
+			    </div>
+			    <div id="navbar" class="navbar-collapse collapse">
+			    	<ul class="nav navbar-nav">
+			            <li class="active"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+			        </ul>
+			        {% if not user.is_authenticated %}
+			        <ul class="nav navbar-nav navbar-right">
+			        	<li><a href="http://www.findalltogether.com/wp/about/">{% trans "About" %}</a></li>
+	            		<li><a href="http://www.findalltogether.com/wp/contact-us/">{% trans "Contact" %}</a></li>
+	            		<li><a href="{% url 'django.contrib.auth.views.login' %}"><i class="fa fa-fw fa-power-off"></i>{% trans 'Login' %}</a></li>
+			        </ul>
+			        {% endif %}
+			      	{% if user.is_authenticated %}
+		            <ul class="nav navbar-nav navbar-right">
+		            	<li><a href="#"><i class="fa fa-envelope"></i></i>Messages</a></li>
+		            	<li><a href="#"><i class="fa fa-bell"></i>Notifications</a></li>
+		                <li>
+		                	<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+		                		{{ user.username }}
+		                		<span class="caret"></span>
+		                	</a>
+		                	<ul class="dropdown-menu">
+		                		<li><a href="#">My Timeline</a></li>
+						    	<li><a href="#"><i class="fa fa-fw fa-user"></i>Profile</a></li>
+						    	<li role="separator" class="divider"></li>
+						    	<li><a href="http://www.findalltogether.com/wp/about/">{% trans "About" %}</a></li>
+			            		<li><a href="http://www.findalltogether.com/wp/contact-us/">{% trans "Contact" %}</a></li>
+			            		<li role="separator" class="divider"></li>
+								<li><a href="{% url 'django.contrib.auth.views.password_change' %}"><i class="fa fa-fw fa-gear"></i>{% trans "Change password" %}</a></li>
+								<li><a href="{% url 'django.contrib.auth.views.logout' %}"><i class="fa fa-fw fa-power-off"></i>{% trans 'Log out' %}</a></li>
+							</ul>
+		                </li>		            
+		            </ul>
+		            <form class="navbar-form navbar-right">
+			        	<input type="text" class="form-control" placeholder="Search...">
+			     	</form>
+		            {% endif %}			      	
+			    </div>
+		     </div>
+		</nav>
+
+	    <div class="container">
+	    {% block container %}
+	        <div class="content">
+	            <div class="page-header">
+	                <h1>{{ site.name }} <small>{% trans "Social website login page" %}</small></h1>
+	            </div>
+	            <ul>
+	                <li><a href="{% url 'django.contrib.auth.views.login' %}">{% trans "Log in" %}</a></li>
+	                <li><a href="{% url 'django.contrib.auth.views.logout' %}">{% trans "Log out" %}</a></li>
+	                <li><a href="{% url 'django.contrib.auth.views.password_change' %}">{% trans "Change password" %}</a></li>
+	                <li><a href="{% url 'django.contrib.auth.views.password_reset' %}">{% trans "Reset my password" %}</a></li>
+	            </ul>
+	        </div>
+	    {% endblock %}
+	    <hr>
+	    <footer>
+	        <p>By <a href="https://github.com/28harishkumar">Harish Kumar</a> &copy; <a href='http://www.findalltogether.com'>Find All Together</a> 2015</p>
+	    </footer>
+	    </div> <!-- /container -->
+    
+    <script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
