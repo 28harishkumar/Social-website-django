@@ -8,7 +8,14 @@
                 <p><strong>{% trans "Oh snap!" %}</strong> {% trans "Please enter a correct username and password. Note that both fields are case-sensitive." %}</p>
             </div>
         {% endif %}
-        <form action="{% url 'django.contrib.auth.views.login' %}" method="post" class="form-horizontal" role="form">{% csrf_token %}
+        {% if request.session.errors %}
+            <div class="alert alert-danger">
+            	{% for error in request.session.errors %}
+                <p><strong>{% trans "Oh snap!" %}</strong> {% trans error %}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form action="{% url 'login' %}" method="post" class="form-horizontal" role="form">{% csrf_token %}
             <legend><span class="col-sm-offset-1">{% trans 'Log in' %}</span></legend>
             {% for field in form %}
                 {% include 'registration/form_field.html' %}
@@ -20,7 +27,7 @@
                 </div>
             </div>
         </form>
-        <p><a href="{% url 'django.contrib.auth.views.password_reset' %}">{% trans "Reset my password" %}</a></p>
+        <p><a href="{% url 'password_reset' %}">{% trans "Reset my password" %}</a></p>
         <script type="text/javascript">
             $(function(){
                 $(".alert-message").alert();

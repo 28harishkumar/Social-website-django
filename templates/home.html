@@ -1,3 +1,20 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block container %} {% endblock %}
+
+{% block page-static %}
+<link href="{{ STATIC_URL }}css/home.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% block add-status %}
+{% include 'parts/status-form.html' %}
+{% endblock %}
+
+{% for post in posts %}
+{% include 'parts/status.html' %}
+{% endfor %}
+{% endblock %}
+
+{% block bottom-page-static %}
+<script src="{{ STATIC_URL }}js/home.js"></script>
+{% endblock %}

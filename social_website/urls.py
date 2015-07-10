@@ -9,23 +9,29 @@ from comment.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url('^', include('django.contrib.auth.urls')),
+
     url(r'^$',Home.as_view(),name='index'),
+    
     url(r'^accounts/login/$',Login.as_view(),name='login'),
+    url(r'^accounts/logout/$',Logout.as_view(),name='logout'),
+    url(r'^accounts/password_reset/$',PasswordReset.as_view(),name='password_reset'),
+    url(r'^accounts/set-password/$',SetPassword.as_view(),name='set_password'),
+    url(r'^accounts/password_change/$',PasswordChange.as_view(),name='password_change'),
+    
     url(r'^/?P<user>[0-9]+$', Timeline.as_view()),
     url(r'^/?P<user>[0-9]+/profile$', Profile.as_view()),
-    url(r'^timeline/?P<user>[0-9]+$',Timeline.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/status$',TimelineStatus.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/image$',TimelineImage.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/video$',TimelineVideo.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/activity$',Activity.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/likes$',Like.as_view()),
+    url(r'^/?P<user>[0-9]+$',Timeline.as_view()),
+    url(r'^/?P<user>[0-9]+/status$',TimelineStatus.as_view()),
+    url(r'^/?P<user>[0-9]+/image$',TimelineImage.as_view()),
+    url(r'^/?P<user>[0-9]+/video$',TimelineVideo.as_view()),
+    url(r'^/?P<user>[0-9]+/activity$',Activity.as_view()),
+    url(r'^/?P<user>[0-9]+/likes$',Like.as_view()),
     
-    url(r'^timeline/?P<user>[0-9]+/favorite$',Favorite.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/favorite/status$',FavoriteStatus.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/favorite/video$',FavoriteVideo.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/favorite/image$',FavoriteImage.as_view()),
-    url(r'^timeline/?P<user>[0-9]+/favorite/audio$',FavoriteAudio.as_view()),
+    url(r'^/?P<user>[0-9]+/favorite$',Favorite.as_view()),
+    url(r'^/?P<user>[0-9]+/favorite/status$',FavoriteStatus.as_view()),
+    url(r'^/?P<user>[0-9]+/favorite/video$',FavoriteVideo.as_view()),
+    url(r'^/?P<user>[0-9]+/favorite/image$',FavoriteImage.as_view()),
+    url(r'^/?P<user>[0-9]+/favorite/audio$',FavoriteAudio.as_view()),
     
     url(r'^message/$', ShowMessage.as_view()),
     url(r'^message/?P<user>[0-9]+$', ShowUserMessage.as_view()),
@@ -34,7 +40,7 @@ urlpatterns = [
     url(r'^message/delete/?P<user>[0-9]+/all$', DeleteBulkMessage.as_view()),
     url(r'^message/delete/?P<user>[0-9]+/bulk$', DeleteAllMessage.as_view()),
 
-    url(r'^post/add$', CreatePost.as_view()),
+    url(r'^post/add$', CreatePost.as_view(), name='add-post'),
     url(r'^post/edit/?P<post_id>[0-9]+$', EditPost.as_view()),
     url(r'^post/update/?P<post_id>[0-9]+$', UpdatePost.as_view()),
     url(r'^post/delete/?P<post_id>[0-9]+$', DeletePost.as_view()),

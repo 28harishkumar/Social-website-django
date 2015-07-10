@@ -35,6 +35,8 @@ DEBUG = False
 
 AUTH_USER_MODEL = 'user.User'
 
+SITE_NAME = 'My Social Website'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -79,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },

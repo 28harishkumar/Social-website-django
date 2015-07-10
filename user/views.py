@@ -8,23 +8,117 @@ from user.models import User
 from post.models import Post
 from comment.models import Comment
 from message.models import Message
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth import logout, authenticate, login, update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, \
+        AdminPasswordChangeForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
     
 class Home(View):
     @method_decorator(login_required)
     def get(self,request):
-        return render_to_response('home.html', context_instance=RequestContext(request))
+        posts = Post.objects.all()
+        return render_to_response('home.html', 
+                                  {'posts':posts},
+                                  context_instance=RequestContext(request))
     
 class Login(View):
+    
+    def reset_session_errors(self, request):
+         try:
+            del request.session['errors']
+         except KeyError:
+            pass
+        
     def get(self,request):
         next = request.GET.get('next','/')
         if request.user.is_authenticated():
             return HttpResponseRedirect(next)
-        form = UserCreationForm()
-        return render_to_response('login.html', {'form':form,'next': next}, context_instance=RequestContext(request))
+        form = AuthenticationForm()
+        return render_to_response('registration/login.html', 
+                                  {'form':form,'next': next}, 
+                                  context_instance=RequestContext(request))
     
     def post(self,request):
-        pass
+        self.reset_session_errors(request)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                request.session['errors'] = ['your account is not activated']
+                return HttpResponseRedirect('/')
+        else:
+            request.session['errors'] = ['Invalid username and password combination',]
+            return HttpResponseRedirect('/')
+
+class Logout(View):
+    def get(self,request):
+        if request.user.is_authenticated():
+            logout(request)
+        return HttpResponseRedirect('/')
+
+class PasswordChange(View):
+    @method_decorator(login_required)
+    def get(self,request):
+        form = PasswordChangeForm(request.user)
+        return render_to_response('registration/password_change_form.html', 
+                                  {'form':form}, 
+                                  context_instance=RequestContext(request))
+    
+    @method_decorator(login_required)
+    def post(self,request):
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            HttpResponseRedirect('/')
+        else:
+            return render_to_response('registration/password_change_form.html', 
+                                      {'form':form}, 
+                                      context_instance=RequestContext(request))
+
+class PasswordReset(View):
+    def get(self,request):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect('/')
+        form = PasswordResetForm()
+        return render_to_response('registration/password_reset_form.html', 
+                                  {'form':form}, 
+                                  context_instance=RequestContext(request))
+    
+    def post(self,request):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect('/')
+        form = PasswordResetForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            HttpResponseRedirect('/')
+        return render_to_response('registration/password_reset_form.html', 
+                                  {'form':form}, 
+                                  context_instance=RequestContext(request))
+
+
+class SetPassword(View):
+    def get(self,request):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect('/')
+        form = SetPasswordForm()
+        return render_to_response('registration/set_password_form.html', 
+                                  {'form':form}, 
+                                  context_instance=RequestContext(request))
+    
+    def post(self,request):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect('/')
+        form = SetPasswordForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            HttpResponseRedirect('/')
+        return render_to_response('registration/set_password_form.html', 
+                                  {'form':form}, 
+                                  context_instance=RequestContext(request))
 
 class Timeline(View):
     pass

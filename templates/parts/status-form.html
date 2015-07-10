@@ -1,0 +1,13 @@
+{% load i18n %}
+<div class="row">
+	<div class="panel-body status-form-container">
+    	<form method="post" onsubmit="return false" action="{% url 'add-post' %}" class="status-form" id="status-form">
+    		{% csrf_token %}
+    		<input type="hidden" name="user_id" value="{{ request.user.id }}" />
+	        <div class="form-group">
+	            <textarea name="status" class="form-control" placeholder="{% trans 'sharing is carring' %}" rows="5"></textarea>
+	        </div>
+	        <button type="submit" id="submit-status" class="btn btn-primary pull-right">{% trans 'Share' %}</button>
+	    </form>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+your post fails
+
+<ul>
+{% for field in form.fields %}
+    <li>{{ field.errors|join:'<br />' }}</li>
+{% endfor %}
+</ul>

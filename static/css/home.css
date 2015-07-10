@@ -1,0 +1,9 @@
+.status-form-container{
+	border: solid 1px #dddddd;
+	padding:10px;
+}
+
+.status-form textarea{
+	border-radius: 0;
+	resize:none;
+}
