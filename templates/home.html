@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block content %}
-{% block add-status %}
-{% include 'parts/status-form.html' %}
+{% block add-post %}
+{% include 'parts/post-form.html' %}
 {% endblock %}
 
 {% for post in posts %}
-{% include 'parts/status.html' %}
+{% include 'parts/post.html' %}
 {% endfor %}
 {% endblock %}
 
 {% block bottom-page-static %}
-<script src="{{ STATIC_URL }}js/home.js"></script>
+
 {% endblock %}

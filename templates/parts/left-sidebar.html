@@ -3,7 +3,7 @@
 	{% block left-sidebar-content%}
 	{% block mini-profile %}
 	<div class="mini-profile">
-		<img src="" class="thumbnail" height="200" width="100%"/>
+		<img src="{{ request.user.profile_photo.url }}" width="100%" class="thumbnail">
 		<h3><a href="#">{{ request.user.name }}</a></h3>
 		<nav class="nav">
 			<ul>

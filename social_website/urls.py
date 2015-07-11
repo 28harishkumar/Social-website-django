@@ -45,8 +45,9 @@ urlpatterns = [
     url(r'^post/update/?P<post_id>[0-9]+$', UpdatePost.as_view()),
     url(r'^post/delete/?P<post_id>[0-9]+$', DeletePost.as_view()),
     url(r'^post/?P<post_id>[0-9]+$', ShowPost.as_view()),
+    url(r'^post/(?P<post_id>[0-9]+)/comments$', PostComments.as_view()),
     
-    url(r'^comment/add$', CreateComment.as_view()),
+    url(r'^comment/add$', CreateComment.as_view(), name='add-comment'),
     url(r'^comment/edit/?P<comment_id>[0-9]+$', EditComment.as_view()),
     url(r'^comment/update/?P<comment_id>[0-9]+$', UpdateComment.as_view()),
     url(r'^comment/delete/?P<comment_id>[0-9]+$', DeleteComment.as_view()),

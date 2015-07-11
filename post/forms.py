@@ -5,7 +5,7 @@ from post.models import Post
 class PostCreateForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['user_id','status','attachment_type','attachment','root_post']
+        fields = ['user','status','attachment_type','attachment','root_post']
         exclude = ['like','favorite']
     
     def clean(self):

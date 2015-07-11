@@ -2,6 +2,124 @@
 	color: #9197a3;
 }
 
+.dot{
+	font-size: 3px;
+	color: #428bca;
+}
+
+/**
+ * 	New post form
+ */
+.post-form-container{
+	border: solid 1px #dddddd;
+	padding:10px;
+}
+
+.post-form textarea{
+	border-radius: 0;
+	resize:none;
+}
+
+.post-form .form-group{
+	margin-bottom: 5px;
+}
+
+.post-form .navbar-nav{
+	float: left;
+	margin: 10px 0 0 0;
+}
+
+/**
+ * 	display post
+ */
+.post{
+	border: solid 1px #DDDDDD;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.post .profile-pic{
+	padding:0 5px 0 0;
+	float: left;
+}
+
+.post .profile-pic img{
+	margin: 0;
+}
+
+.post .post-meta{
+	padding:0;
+	clear: both;
+	margin-bottom: 10px;
+}
+
+.post .post-meta h5{
+	font-weight: bold;
+	font-size: 16px;
+	margin: 5px 0 3px 0;
+	padding-top: 5px;
+}
+
+
+.post .post-status{
+	padding: 5px;
+}
+
+.post .navbar-nav{
+	margin:0 0 5px 0;
+}
+
+@media screen and (max-width: 992px){
+	.sidebar{
+		display:none;
+	}
+}
+
+/**
+ * 	comments
+ */
+.add-comment input{
+	border-radius: 0;
+}
+
+.comment-list{
+	clear:both;
+}
+
+.comment-show{
+	margin: 0;
+	border-top: solid 1px #dddddd;
+}
+
+.comment-image{
+	float: left;
+	margin: 5px;
+}
+
+.comment-image img{
+	margin: 0;
+}
+.comment-main{
+	float: left;
+}
+
+.comment-main h5{
+	margin: 5px 0 0 0;
+  	font-weight: bold;
+}
+
+.comment-main p{
+	margin: 0;
+  	line-height: 1;
+}
+
+.comment-meta{
+	float:right;
+}
+
+/**
+ * 	floating notices via ajax
+ */
 .floating-notice-wrapper{
 	position:fixed;
 	top:0;

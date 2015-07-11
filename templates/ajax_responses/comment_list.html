@@ -1,0 +1,14 @@
+{% for comment in comments %}
+<div class="comment-show row">
+	<div class="comment-image">
+		<img src="{{ comment.user.profile_photo.url }}" width="40" height="40" class="thumbnail"/>
+	</div>
+	<div class="comment-main">
+		<h5><a href="#">{{ comment.user.name }}</a></h5>
+		<p>{{ comment.comment }}</p>
+	</div>
+	<div class="comment-meta">
+		<small class="small-blur">{{ comment.created_on }}</small>
+	</div>
+</div>
+{% endfor %}

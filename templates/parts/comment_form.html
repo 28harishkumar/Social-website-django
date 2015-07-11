@@ -1,0 +1,9 @@
+{% load i18n %}
+<div class="add-comment">
+	<form id="comment-form" method="post" action="{% url 'add-comment' %}" onsubmit="return false">
+		{% csrf_token %}
+		<input name="post" value="{{ post.id }}" type="hidden"/>
+		<input name="user" value="{{ request.user.id }}" type="hidden"/>
+		<input name="comment" type="text" class="form-control" placeholder="{% trans 'Write a comment ...' %}" id="comment-input" />
+	</form>
+</div>

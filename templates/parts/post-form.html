@@ -1,19 +1,21 @@
 {% load i18n %}
 <div class="row">
-	<div class="panel-body status-form-container">
-    	<form method="post" onsubmit="return false" action="{% url 'add-post' %}" class="status-form" id="status-form">
+	<div class="panel-body post-form-container">
+    	<form method="post" onsubmit="return false" action="{% url 'add-post' %}" class="post-form" id="post-form">
     		{% csrf_token %}
-    		<input type="hidden" name="user_id" value="{{ request.user.id }}" />
+    		<input type="hidden" name="user" value="{{ request.user.id }}" />
 	        <div class="form-group">
 	            <textarea name="status" class="form-control" placeholder="{% trans 'sharing is carring' %}" rows="5"></textarea>
 	        </div>
+	        <input type="hidden" name="attachment" />
+	        <input type="hidden" name="attachment_type" />
 	        <div class="navbar-nav">
 				<a href="#"><i class="fa fa-paperclip"></i> {% trans 'Attach' %}</a>&nbsp;&nbsp;
 				<a href="#"><i class="fa fa-picture-o"></i> {% trans 'Photo' %}</a>&nbsp;&nbsp;
 				<a href="#"><i class="fa fa-music"></i> {% trans 'Music' %}</a>&nbsp;&nbsp;
 				<a href="#"><i class="fa fa-video-camera"></i> {% trans 'Video' %}</a>
 			</div>
-	        <button type="submit" id="submit-status" class="btn btn-primary pull-right">{% trans 'Share' %}</button>
+	        <button type="submit" id="submit-post" class="btn btn-primary pull-right">{% trans 'Share' %}</button>
 	    </form>
     </div>
 </div>

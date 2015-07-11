@@ -16,7 +16,7 @@ class MyUserAdmin(UserAdmin):
 
     UserAdmin.fieldsets = (
         (None, {'fields': ('username', 'email','password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name')}),
+        ('Personal info', {'fields': ('first_name', 'last_name','profile_photo','cover_image')}),
         ('advance_info',{'fields':('confirmation_code',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),

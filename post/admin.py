@@ -4,11 +4,11 @@ from post.models import Post
 
 class PostAdmin(admin.ModelAdmin):
     
-    list_display = ('user_id','id')
-    search_fields = ('user_id', 'id', 'status')
+    list_display = ('user','id')
+    search_fields = ('user', 'id', 'status')
 
     fieldsets = (
-        (None, {'fields': ('user_id', 'status')}),
+        (None, {'fields': ('user', 'status')}),
         ('Attachment', {'fields': ('attachment_type', 'attachment')}),
         ('social',{'fields':('like','favorite','root_post')}),
     )
