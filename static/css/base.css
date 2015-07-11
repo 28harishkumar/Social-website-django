@@ -2,13 +2,36 @@
 	color: #9197a3;
 }
 
-/*.floating-notice{
-	position:absolute;
-	width: 500px;
-	height: 500px;
-	background: #535344;
+.floating-notice-wrapper{
+	position:fixed;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	z-index: 5000;
+	overflow: auto;
+  	overflow-x: hidden;
+  	display: none;
+}
+
+.floating-close-area{
+	position: absolute;
+	top:0;
+	right:0;
+	left:0;
+	background: #888888;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.floating-notice{
+	position: relative;
+	max-width: 500px;
+	background: #FFFFFF;
 	z-index: 23423;
-	top: 10%;
-	left: 30%;
-}*/
+	top: 100px;
+	margin: auto;
+	margin-bottom: 100px;
+	opacity: 1;
+}
 

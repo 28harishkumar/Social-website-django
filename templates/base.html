@@ -45,12 +45,16 @@
 		    {% include 'parts/footer.html' %}
 		    {% endblock %}
 	    </div> <!-- /container -->
-    <div class="floating-notice" id="floating-notice">
-    	
-    </div>
-    <script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
-	{% block bottom-group-static %}{% endblock %}
-	{% block bottom-page-static %}{% endblock %}
-  </body>
+	 	
+	 	<div class="floating-notice-wrapper">
+			<div class="floating-close-area" id="floating-close-area"></div>
+			<div class="floating-notice" id="floating-notice">
+		    	
+		    </div>
+		</div>
+	    <script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
+	    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+		{% block bottom-group-static %}{% endblock %}
+		{% block bottom-page-static %}{% endblock %}
+  	</body>
 </html>

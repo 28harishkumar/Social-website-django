@@ -8,9 +8,13 @@
 	resize:none;
 }
 
+.status-form .form-group{
+	margin-bottom: 5px;
+}
+
 .status-form .navbar-nav{
 	float: left;
-	margin: 0;
+	margin: 10px 0 0 0;
 }
 
 .post{

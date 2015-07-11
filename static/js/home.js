@@ -4,6 +4,12 @@ $(function(){
         add_status();
         return false;
     });
+    
+    $('#floating-close-area').click(function(){
+    	$('.floating-notice-wrapper').css("display","none");
+    	$("body").css('height','auto');
+		$("body").css('overflow','auto');
+    });
 });
 
 function add_status(){
@@ -14,12 +20,23 @@ function add_status(){
 	}
 	
 	success = function(data, textStatus, XMLHttpRequest) {
-				alert(data);
+				$("#floating-notice")[0].innerHTML = data;
+				$('.floating-notice-wrapper').css("display","block");
+				
+				var h = 0;
+				if($('.floating-notice').height()+200 > $(window).height())
+					h = $('.floating-notice').height()+200 ;
+				else
+					h = $(window).height();
+					
+				$(".floating-close-area").css('height',h);
+				$("body").css('height',h);
+				$("body").css('overflow','hidden');
 				form.reset();
 				$('#submit-status').button('reset');
 		};
 	error = function(){
-		alert('error');
+		alert('error occurred! post could not be posted');
 		$('#submit-status').button('reset');
 	};
 	
