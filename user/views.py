@@ -15,7 +15,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, \
 class Home(View):
     @method_decorator(login_required)
     def get(self,request):
-        posts = Post.objects.all()
+        posts = Post.objects.order_by('-created_on')
         return render_to_response('home.html', 
                                   {'posts':posts},
                                   context_instance=RequestContext(request))

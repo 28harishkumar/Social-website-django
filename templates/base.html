@@ -3,7 +3,7 @@
 <html lang="en">
   	<head>
 	  	<meta charset="utf-8">
-	    <title>{% block title %}Social Website{% endblock %}</title>
+	    <title>{% block title %}Find All Together{% endblock %}</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta name="description" content="{% block description %}This is demo of social website{% endblock %}">
 	    <meta name="author" content="Harish Kumar">
@@ -32,7 +32,7 @@
 		    	{% block left-sidebar %}
 		    	{% include 'parts/left-sidebar.html' %}
 		    	{% endblock %}
-		        <div class="content col-lg-8 col-md-6">
+		        <div class="content col-md-8 col-lg-8">
 		            {% block content %}{% endblock %}
 		        </div>
 		        {% block right-sidebar %}
@@ -45,7 +45,9 @@
 		    {% include 'parts/footer.html' %}
 		    {% endblock %}
 	    </div> <!-- /container -->
-    <div class=".floating notice" id="floating-notice"></div>
+    <div class="floating-notice" id="floating-notice">
+    	
+    </div>
     <script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
 	{% block bottom-group-static %}{% endblock %}
