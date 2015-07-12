@@ -31,8 +31,8 @@
                 		<span class="caret"></span>
                 	</a>
                 	<ul class="dropdown-menu">
-                		<li><a href="#"><i class="fa fa-fw fa-tachometer"></i> {% trans "Timeline" %}</a></li>
-				    	<li><a href="#"><i class="fa fa-fw fa-user"></i> {% trans "Profile" %}</a></li>
+                		<li><a href="{% url 'timeline' request.user.id %}"><i class="fa fa-fw fa-tachometer"></i> {% trans "Timeline" %}</a></li>
+				    	<li><a href="{% url 'profile' request.user.id %}"><i class="fa fa-fw fa-user"></i> {% trans "Profile" %}</a></li>
 				    	<li role="separator" class="divider"></li>
 				    	<li><a href="http://www.findalltogether.com/wp/about/"><i class="fa fa-fw fa-info-circle"></i> {% trans "About" %}</a></li>
 	            		<li><a href="http://www.findalltogether.com/wp/contact-us/"><i class="fa fa-envelope-o"></i> {% trans "Contact" %}</a></li>

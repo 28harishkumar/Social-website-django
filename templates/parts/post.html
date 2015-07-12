@@ -22,7 +22,7 @@
 					<i class="fa fa-heart fa-1"></i>
 				</a>&nbsp;&nbsp;<i class="fa fa-circle fa-1 dot"></i>&nbsp;&nbsp; 
 				<a href="#" title="{% trans 'Comment' %}"  data-id="{{ post.id }}" class="show-comment">
-					<i class="fa fa-comment fa-1"></i>
+					<i class="fa fa-comment fa-1"></i>&nbsp;{% if post.comment_set.all.count %}{{ post.comment_set.all.count }}{% endif %}
 				</a>&nbsp;&nbsp;<i class="fa fa-circle fa-1 dot"></i>&nbsp;&nbsp;
 				<a href="#" title="{% trans 'Share' %}">
 					<i class="fa fa-share-alt fa-1"></i>

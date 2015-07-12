@@ -1,10 +1,18 @@
 {% for comment in comments %}
-<div class="comment-show row">
+<div class="comment-show row" id="comment-{{ comment.id }}">
 	<div class="comment-image">
 		<img src="{{ comment.user.profile_photo.url }}" width="40" height="40" class="thumbnail"/>
 	</div>
 	<div class="comment-main">
 		<h5><a href="#">{{ comment.user.name }}</a></h5>
+		<div class="comment-settings pull-right">
+			<i class="fa fa-chevron-circle-down fa-1"></i>
+			<ul class="nav nav-pills nav-stacked comment-settings-list">
+				<li><a href="#" id='edit-comment-{{ comment.id }}' class="edit-comment-link">Edit</a></li>
+				<li><a href="{% url 'delete-comment' comment.id %}" class="delete-comment-link" data-comment_id="{{ comment.id }}" data-c="{{ csrf_token }}" onclick="delete_comment(this); return false;">Delete</a></li>
+				<li><a href="#">Report</a></li>
+			</ul>
+		</div>
 		<p>{{ comment.comment }}</p>
 	</div>
 	<div class="comment-meta">

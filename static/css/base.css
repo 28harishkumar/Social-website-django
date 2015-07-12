@@ -99,22 +99,72 @@
 .comment-image img{
 	margin: 0;
 }
+
 .comment-main{
 	float: left;
+	width:90%;
 }
 
 .comment-main h5{
 	margin: 5px 0 0 0;
   	font-weight: bold;
+  	float: left;
 }
+
+.comment-settings{
+	position: relative;
+	background-color: #FFFFFF;
+	zoom:1;
+	opacity:1;
+	display: none;
+}
+
+.comment-show:hover .comment-settings,.comment-show:focus .comment-settings{
+	display: block;
+}
+
+.comment-settings i{
+	color:#428BCA;
+	background-color: #FFFFFF;
+	z-index: 2;
+}
+
+.comment-settings-list{
+	background-color: #FFFFFF;
+	border: solid 1px #DDDDDD;
+	position: absolute;
+	z-index: 3;
+	display: none;
+}
+
+.comment-settings-list>li>a{
+	padding: 3px 30px 2px 5px;
+}
+
+.comment-settings-list>li{
+	line-height: 1;
+}
+
+.comment-settings:hover .comment-settings-list,.comment-settings:focus .comment-settings-list{
+	display: block;
+	left: -65px;
+}
+
 
 .comment-main p{
 	margin: 0;
   	line-height: 1;
+  	clear:both;
 }
 
 .comment-meta{
 	float:right;
+}
+
+@media screen and (max-width: 768px){
+	.comment-main{
+		width:80%;
+	}
 }
 
 /**

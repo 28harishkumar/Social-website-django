@@ -1,0 +1,14 @@
+{% extends 'user/timeline-base.html' %}
+{% load i18n %}
+
+{% block left-sidebar-content%}
+	
+{% endblock %}
+
+{% block content %}
+<div class="timeline-content">
+	{% for post in posts %}
+	{% include 'parts/post.html' %}
+	{% endfor %}
+</div>
+{% endblock %}

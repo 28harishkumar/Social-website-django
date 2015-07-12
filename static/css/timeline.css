@@ -1,0 +1,29 @@
+.cover-section{
+	height: 340px;
+}
+
+.cover-image-wrapper{
+	position: relative;
+}
+
+.profile-photo-wrapper{
+	position: relative;
+	top: -120px;
+	left: 20px;
+	float: left;
+}
+
+.timeline-menu{
+	position: relative;
+	display: block;
+  	left: 20px;
+  	height: 40px;
+}
+
+.timeline-menu>ul{
+	height: 40px;
+}
+
+.timeline-content{
+	float: left;
+}

@@ -5,6 +5,10 @@
 <link href="{{ STATIC_URL }}css/home.css" rel="stylesheet">
 {% endblock %}
 
+{% block left-sidebar %}
+{% include 'parts/left-sidebar.html' %}
+{% endblock %}
+
 {% block content %}
 {% block add-post %}
 {% include 'parts/post-form.html' %}

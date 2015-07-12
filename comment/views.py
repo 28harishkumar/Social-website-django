@@ -6,7 +6,8 @@ from django.core.urlresolvers import reverse
 from django.views.generic import View
 from user.models import User
 from post.models import Post
-from comment.forms import CommentCreateForm
+from comment.models import Comment
+from comment.forms import CommentCreateForm, CommentUpdateForm
     
 class CreateComment(View):
     @method_decorator(login_required)
@@ -19,11 +20,29 @@ class CreateComment(View):
         else:
             return Http404
 
-class EditComment(View):
-    pass
-
 class UpdateComment(View):
-    pass
+    @method_decorator(login_required)
+    def post(self,request,comment_id):
+        form = CommentUpdateForm(data=request.POST, comment_id = comment_id )   
+        if form.is_valid():
+            form.user = request.user
+            form.save()
+            return HttpResponse('success')
+        else:
+            return Http404
 
 class DeleteComment(View):
-    pass
+    @method_decorator(login_required)
+    def post(self,request,comment_id):
+        comment = get_object_or_404(Comment, pk = comment_id)
+        if comment.user.id == request.user.id and comment.id == int(comment_id):
+            comment.delete()
+            return HttpResponse('success')
+        else:
+            return Http404
+            
+            
+            
+            
+            
+            
