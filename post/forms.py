@@ -12,6 +12,7 @@ class PostCreateForm(ModelForm):
         super(PostCreateForm, self).clean()
         attachment = self.cleaned_data['attachment']
         status = self.cleaned_data['status']
-        if attachment == '' and status.strip() == '':
+        root_post = self.cleaned_data['root_post']
+        if attachment == '' and status.strip() == '' and root_post == None:
             raise forms.ValidationError('status can not be empty')
         

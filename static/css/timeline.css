@@ -1,5 +1,11 @@
 .cover-section{
 	height: 340px;
+	position: relative;
+  	width: 100%;
+  	margin: 0;
+  	float: left;
+  	padding: 0;
+ 	top: -10px;
 }
 
 .cover-image-wrapper{
@@ -18,6 +24,7 @@
 	display: block;
   	left: 20px;
   	height: 40px;
+  	width: 97%;
 }
 
 .timeline-menu>ul{

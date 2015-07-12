@@ -1,7 +1,7 @@
 $(function(){
-    $('#post-form').submit(function(){
+    $('.post-form').submit(function(e){
         $('#submit-post').button('loading');
-        add_post();
+        add_post(e.currentTarget);
         return false;
     });
     
@@ -20,33 +20,58 @@ $(function(){
     	return false;
     });
     
+    $('.share-post').click(function(e){
+    	id = e.currentTarget.dataset.id;
+    	url = e.currentTarget.href;
+    	share_post(id,url);
+    	return false;
+    });
+    
     $('#floating-close-area').click(function(){
-    	$('.floating-notice-wrapper').css("display","none");
-    	$("body").css('height','auto');
-		$("body").css('overflow','auto');
+    	hide_floating_notice();
+    });
+    
+    $('.edit-comment-form').submit(function(e){
+        $('#submit-update-comment').button('loading');
+        update_comment(e.currentTarget);
+        return false;
     });
 });
 
-function add_post(){
-	var form = $('#post-form')[0];
+var csrf = $('meta[name=csrfmiddlewaretoken]').attr("content");
+
+function show_floating_notice(data)
+{
+	$("#floating-notice")[0].innerHTML = data;
+	$('.floating-notice-wrapper').css("display","block");
+	
+	var h = 0;
+	if($('.floating-notice').height()+200 > $(window).height())
+		h = $('.floating-notice').height()+200 ;
+	else
+		h = $(window).height();
+		
+	$(".floating-close-area").css('height',h);
+	$("body").css('height',h);
+	$("body").css('overflow','hidden');
+}
+
+function hide_floating_notice()
+{
+	$('#floating-notice')[0].innerHTML = '';
+	$('.floating-notice-wrapper').css("display","none");
+	$("body").css('height','auto');
+	$("body").css('overflow','auto');
+}
+
+function add_post(form){
 	var data = {};
 	for (var i = 0; i < form.length; i++) {
 		data[form[i].name] = form[i].value;
 	}
 	
 	success = function(data, textStatus, XMLHttpRequest) {
-				$("#floating-notice")[0].innerHTML = data;
-				$('.floating-notice-wrapper').css("display","block");
-				
-				var h = 0;
-				if($('.floating-notice').height()+200 > $(window).height())
-					h = $('.floating-notice').height()+200 ;
-				else
-					h = $(window).height();
-					
-				$(".floating-close-area").css('height',h);
-				$("body").css('height',h);
-				$("body").css('overflow','hidden');
+				show_floating_notice(data);
 				form.reset();
 				$('#submit-post').button('reset');
 		};
@@ -75,18 +100,7 @@ function add_comment(post_id){
 	}
 	
 	success = function(data, textStatus, XMLHttpRequest) {
-				$("#floating-notice")[0].innerHTML = data;
-				$('.floating-notice-wrapper').css("display","block");
-				
-				var h = 0;
-				if($('.floating-notice').height()+200 > $(window).height())
-					h = $('.floating-notice').height()+200 ;
-				else
-					h = $(window).height();
-					
-				$(".floating-close-area").css('height',h);
-				$("body").css('height',h);
-				$("body").css('overflow','hidden');
+				show_floating_notice(data);
 				form.reset();
 		};
 	error = function(){
@@ -144,6 +158,71 @@ function delete_comment(e)
 			error : error
 		});
 }
+
+function edit_comment(e)
+{
+	var id = e.dataset.comment_id;
+	form = $('#dummy-edit-comment-form')[0];
+	form.action = e.href;
+	form[1].value = id;
+	show_floating_notice($('#dummy-comment-form-wrapper')[0].innerHTML);
+	$("#dummy-edit-comment-form")[0].id = "edit-comment-form-"+id;
+	$("#edit-comment-form-"+id)[0][2].value = $('#comment-content-'+id)[0].innerHTML;
+	$("#edit-comment-form-"+id)[0].dataset.comment_id = id;
+	return false;
+}
+
+function update_comment(form)
+{
+	var id = form.dataset.comment_id;
+	var data = {};
+	for (var i = 0; i < form.length; i++) {
+		data[form[i].name] = form[i].value;
+	}
+	
+	var comment = data['comment'];
+	
+	success = function(data, textStatus, XMLHttpRequest){
+		$('#comment-content-'+id)[0].innerHTML = comment;
+		hide_floating_notice();		
+	};
+	
+	error = function(data){
+		alert('error occurred! comment could not be edited');
+	};
+	
+	$.ajax({
+			url : form.action,
+			type : 'POST',
+			async : true,
+			data : data,
+			success : success,
+			error : error
+		});
+}
+
+function share_post(id,url)
+{
+	success = function(data, textStatus, XMLHttpRequest){
+		show_floating_notice(data);		
+	};
+	
+	error = function(data){
+		alert('error occurred! your network connection is not working or post has been deleted.');
+		console.log(data);
+	};
+	
+	$.ajax({
+			url : url,
+			type : 'GET',
+			async : true,
+			success : success,
+			error : error
+		});
+	return false;
+}
+
+
 
 
 

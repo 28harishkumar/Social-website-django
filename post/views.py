@@ -40,6 +40,14 @@ class ShowPost(View):
     #show post
     pass
 
+class SharePost(View):
+    @method_decorator(login_required)
+    def get(self, request, post_id):
+        post = get_object_or_404(Post, pk = post_id)
+        return render_to_response('ajax_responses/share-post.html',
+                                {'post':post},
+                                context_instance=RequestContext(request))
+
 class PostComments(View):
     @method_decorator(login_required)
     def get(self,request,post_id):

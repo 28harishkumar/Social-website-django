@@ -7,7 +7,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta name="description" content="{% block description %}This is demo of social website{% endblock %}">
 	    <meta name="author" content="Harish Kumar">
-	
+		<meta name="csrfmiddlewaretoken" content="{{ csrf_token }}">
 	    <link rel="shortcut icon" href="http://www.findalltogether.com/wp/wp-content/uploads/2015/05/logo1.png">
 	    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -26,9 +26,9 @@
 		{% block header %}
 		{% include 'parts/header.html' %}
 		{% endblock %}
+		{% block page-header %}{% endblock %}
 	    <div class="container">
 	        {% block container %}
-	        {% block page-header %}{% endblock %}
 	    	<div class="row">
 		    	{% block left-sidebar %}{% endblock %}
 		        <div class="content col-md-8 col-lg-8">
@@ -51,6 +51,11 @@
 		    	
 		    </div>
 		</div>
+		
+		<!-- hidden sections -->
+		{% block hidden-sections %}
+		{% include 'parts/edit-comment.html' %}
+		{% endblock %}
 	    <script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
 	    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
 	    <script src="{{ STATIC_URL }}js/base.js"></script>

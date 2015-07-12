@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^post/delete/?P<post_id>[0-9]+$', DeletePost.as_view()),
     url(r'^post/?P<post_id>[0-9]+$', ShowPost.as_view()),
     url(r'^post/(?P<post_id>[0-9]+)/comments$', PostComments.as_view(),name='comment-on-post'),
+    url(r'^post/(?P<post_id>[0-9]+)/share$', SharePost.as_view(), name='share-post'),
     
     url(r'^comment/add$', CreateComment.as_view(), name='add-comment'),
     url(r'^comment/update/(?P<comment_id>[0-9]+)$', UpdateComment.as_view(), name='update-comment'),

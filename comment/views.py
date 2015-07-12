@@ -18,18 +18,22 @@ class CreateComment(View):
             form.save()
             return HttpResponse('success')
         else:
-            return Http404
+            raise Http404()
 
 class UpdateComment(View):
     @method_decorator(login_required)
     def post(self,request,comment_id):
-        form = CommentUpdateForm(data=request.POST, comment_id = comment_id )   
-        if form.is_valid():
-            form.user = request.user
-            form.save()
-            return HttpResponse('success')
-        else:
-            return Http404
+        comment = get_object_or_404(Comment, pk = comment_id)
+        if(comment.user == request.user):
+            data = request.POST.copy()
+            data['user'] = request.user.id
+            data['post'] = comment.post.id
+            data['id'] = comment.id          
+            form = CommentUpdateForm(data=data, instance = comment)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('success')
+        raise Http404('invalid form')
 
 class DeleteComment(View):
     @method_decorator(login_required)
@@ -39,7 +43,7 @@ class DeleteComment(View):
             comment.delete()
             return HttpResponse('success')
         else:
-            return Http404
+            raise Http404()
             
             
             

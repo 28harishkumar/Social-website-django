@@ -1,0 +1,9 @@
+{% load i18n %}
+<div id="dummy-comment-form-wrapper">
+<form id="dummy-edit-comment-form" data-comment_id="" class="edit-comment-form" method="post" action="" onsubmit="update_comment(this); return false">
+	{% csrf_token %}
+	<input type="hidden" name="id" value="" />
+	<input name="comment" data-comment_id="" type="text" value="" class="form-control" placeholder="{% trans 'Write a comment ...' %}" />
+	<button type="submit" id="submit-update-comment" class="btn btn-primary pull-right">{% trans 'Edit Comment' %}</button>
+</form>
+</div>
