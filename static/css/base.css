@@ -26,7 +26,26 @@
 
 .post-form .navbar-nav{
 	float: left;
-	margin: 10px 0 0 0;
+	margin: 5px 0 0 5px;
+	font-size: 20px;
+}
+
+#attachment-file{
+	height: 0px;
+	width:0px;
+}
+
+#post-upload-status{
+	display: none;
+	color:#428BCA;
+	height: 0.8em;
+  	width: 150px;
+  	margin: 0 0 2px 15px;
+}
+
+#attachment-name{
+	font-size: 13px;
+	margin: 2px 0 -7px 0;
 }
 
 /**
@@ -60,13 +79,33 @@
 	padding-top: 5px;
 }
 
-
 .post .post-status{
 	padding: 5px;
+	display: block;
+  	overflow: hidden;
+}
+
+.embeded{
+	width:100%;
+	clear: both;
+	margin: 0 0 5px 0;
+}
+
+.embeded>img{
+	max-width: 100%;
+	margin: 0 auto;
+	display: block;
+	padding:0;
+}
+
+.embeded>.video-js>video{
+	display: block;
+	padding:0;
 }
 
 .post .navbar-nav{
 	margin:0 0 5px 0;
+	font-size: 15px;
 }
 
 @media screen and (max-width: 992px){

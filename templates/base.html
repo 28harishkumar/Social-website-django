@@ -13,6 +13,13 @@
 	    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 	    <link href="{{ STATIC_URL }}font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	    <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet">
+	    {% block html5-video %}
+	    <link href="{{ STATIC_URL }}/video-js/video-js.css" rel="stylesheet" type="text/css">
+		<script src="{{ STATIC_URL }}/video-js/video.js"></script>
+		<script>
+		    videojs.options.flash.swf = "video-js.swf";
+		</script>
+  		{% endblock %}
 	    {% block group-static %}{% endblock %}
 	    {% block page-static %}{% endblock %}
 	    <style type="text/css">

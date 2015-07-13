@@ -13,7 +13,7 @@ from post.forms import PostCreateForm
 class CreatePost(View):
     @method_decorator(login_required)
     def post(self,request):
-        form = PostCreateForm(data=request.POST)
+        form = PostCreateForm(request.POST,request.FILES)
         if form.is_valid():
             form.user = request.user
             form.save()

@@ -1,4 +1,36 @@
 $(function(){
+	$('#general-attachment').click(function(){
+		$('#attachment-file')[0].value = '';
+		$('#attachment-name')[0].innerHTML = '';
+		$('#attachment-file')[0].accept = 'file/*';
+		$('#attachment-file').click();
+	});
+	
+	$('#image-attachment').click(function(){
+		$('#attachment-file')[0].value = '';
+		$('#attachment-name')[0].innerHTML = '';
+		$('#attachment-file')[0].accept = "image/*";
+		$('#attachment-file').click();
+	});
+	
+	$('#video-attachment').click(function(){
+		$('#attachment-file')[0].value = '';
+		$('#attachment-name')[0].innerHTML = '';
+		$('#attachment-file')[0].accept = "video/*";
+		$('#attachment-file').click();
+	});
+	
+	$('#audio-attachment').click(function(){
+		$('#attachment-file')[0].value = '';
+		$('#attachment-name')[0].innerHTML = '';
+		$('#attachment-file')[0].accept = "audio/*";
+		$('#attachment-file').click();
+	});
+	
+	$('#attachment-file').change(function(){
+		$('#attachment-name')[0].innerHTML = $('#attachment-file').val();
+	});
+	
     $('.post-form').submit(function(e){
         $('#submit-post').button('loading');
         add_post(e.currentTarget);
@@ -65,31 +97,50 @@ function hide_floating_notice()
 }
 
 function add_post(form){
-	var data = {};
-	for (var i = 0; i < form.length; i++) {
-		data[form[i].name] = form[i].value;
-	}
+	var data = new FormData(form);
 	
 	success = function(data, textStatus, XMLHttpRequest) {
 				show_floating_notice(data);
+				$('#post-upload-status').hide();
 				form.reset();
 				$('#submit-post').button('reset');
 		};
-	error = function(){
+	error = function(data, error){
 		alert('error occurred! post could not be posted');
+		$('#post-upload-status').hide();
 		$('#submit-post').button('reset');
 	};
 	
+	beforeSendHandler = function(){
+		$('#attachment-name')[0].innerHTML = '';
+		$('#post-upload-status').show();
+	};
+	
 	$.ajax({
-			url : form.action,
-			type : form.method.toUpperCase(),
-			dataType : 'text',
-			async : true,
-			data : data,
-			success : success,
-			error : error
-		});
+        url: form.action,
+        type: 'POST',        
+        async : true,
+        success: success,
+        error: error,
+        data : data,
+        contentType: false,
+        processData: false,
+        beforeSend: beforeSendHandler,
+        xhr: function() { 
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ 
+                myXhr.upload.addEventListener('progress',progressHandlingFunction, false);
+            }
+            return myXhr;
+        },
+    });
 	return false;
+}
+
+function progressHandlingFunction(e){
+    if(e.lengthComputable){
+        $('progress').attr({value:e.loaded,max:e.total});
+    }
 }
 
 function add_comment(post_id){

@@ -16,6 +16,7 @@
             </div>
         {% endif %}
         <form action="{% url 'login' %}" method="post" class="form-horizontal" role="form">{% csrf_token %}
+        	<input type="hidden" name="next" value="{{ next }}">
             <legend><span class="col-sm-offset-1">{% trans 'Log in' %}</span></legend>
             {% for field in form %}
                 {% include 'registration/form_field.html' %}

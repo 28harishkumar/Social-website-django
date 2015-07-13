@@ -45,7 +45,8 @@ class Login(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                next = request.POST.get('next','/')
+                return HttpResponseRedirect(next)
             else:
                 request.session['errors'] = ['your account is not activated']
                 return HttpResponseRedirect('/')
@@ -121,6 +122,7 @@ class SetPassword(View):
                                   context_instance=RequestContext(request))
 
 class Timeline(View):
+    @method_decorator(login_required)
     def get(self,request, user):
         posts = Post.objects.filter(user= user)
         user = get_object_or_404(User,pk = user)
