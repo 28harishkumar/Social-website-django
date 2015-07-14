@@ -49,7 +49,6 @@ class SharePost(View):
                                 context_instance=RequestContext(request))
 
 class PostComments(View):
-    @method_decorator(login_required)
     def get(self,request,post_id):
         comments = get_object_or_404(Post, pk = post_id).comment_set.all()        
         return render_to_response('ajax_responses/comment_list.html',

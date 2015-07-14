@@ -18,8 +18,8 @@ urlpatterns = [
     url(r'^accounts/set-password/$',SetPassword.as_view(),name='set_password'),
     url(r'^accounts/password_change/$',PasswordChange.as_view(),name='password_change'),
     
-    url(r'^(?P<user>[0-9]+)$', Timeline.as_view(), name = 'timeline'),
-    url(r'^(?P<user>[0-9]+)/profile$', Profile.as_view(), name='profile'),
+    url(r'^(?P<user>[0-9]+)/$', Timeline.as_view(), name = 'timeline'),
+    url(r'^(?P<user>[0-9]+)/profile/$', Profile.as_view(), name='profile'),
     url(r'^(?P<user>[0-9]+)/status$',TimelineStatus.as_view()),
     url(r'^(?P<user>[0-9]+)/image$',TimelineImage.as_view()),
     url(r'^(?P<user>[0-9]+)/video$',TimelineVideo.as_view()),
@@ -39,16 +39,16 @@ urlpatterns = [
     url(r'^message/delete/?P<user>[0-9]+/all$', DeleteBulkMessage.as_view()),
     url(r'^message/delete/?P<user>[0-9]+/bulk$', DeleteAllMessage.as_view()),
 
-    url(r'^post/add$', CreatePost.as_view(), name='add-post'),
+    url(r'^post/add/$', CreatePost.as_view(), name='add-post'),
     url(r'^post/update/?P<post_id>[0-9]+$', UpdatePost.as_view()),
     url(r'^post/delete/?P<post_id>[0-9]+$', DeletePost.as_view()),
     url(r'^post/?P<post_id>[0-9]+$', ShowPost.as_view()),
-    url(r'^post/(?P<post_id>[0-9]+)/comments$', PostComments.as_view(),name='comment-on-post'),
-    url(r'^post/(?P<post_id>[0-9]+)/share$', SharePost.as_view(), name='share-post'),
+    url(r'^post/(?P<post_id>[0-9]+)/comments/$', PostComments.as_view(),name='comment-on-post'),
+    url(r'^post/(?P<post_id>[0-9]+)/share/$', SharePost.as_view(), name='share-post'),
     
-    url(r'^comment/add$', CreateComment.as_view(), name='add-comment'),
-    url(r'^comment/update/(?P<comment_id>[0-9]+)$', UpdateComment.as_view(), name='update-comment'),
-    url(r'^comment/delete/(?P<comment_id>[0-9]+)$', DeleteComment.as_view(), name='delete-comment'),
+    url(r'^comment/add/$', CreateComment.as_view(), name='add-comment'),
+    url(r'^comment/update/(?P<comment_id>[0-9]+)/$', UpdateComment.as_view(), name='update-comment'),
+    url(r'^comment/delete/(?P<comment_id>[0-9]+)/$', DeleteComment.as_view(), name='delete-comment'),
     
     url(r'^setting$', Settings.as_view()),
 ]

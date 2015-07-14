@@ -21,3 +21,71 @@ class User(AbstractUser,models.Model):
     
     class Meta:
             db_table = 'auth_user'
+
+"""
+name 
+email
+live in 
+studied at
+work at
+website
+date of birth
+gender
+language
+quote
+Joined on
+follower
+following
+"""
+
+class City(models.Model):
+    
+    region_choices = (
+          ('AS','Asia'),
+          ('Af','Africa'),
+          ('EU','Europe'),
+          ('NA','North Amarica'),
+          ('SA','South Amarica'),
+                      )
+    
+    country_choices = (
+                       ('IND','India'),
+                       )
+    name = models.CharField(max_length = 100)
+    country = models.CharField(max_length = 3, choices = country_choices)
+    region = models.CharField(max_length = 2, choices = region_choices)  
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta():
+        verbose_name_plural = 'Cities'
+
+class Profile(models.Model):
+    
+    sex_choices = (
+            ('m','MALE'),
+            ('f','FEMALE'),
+            ('n','NONE')       
+                   )
+    
+    language_choices = (
+                        ('ENG', 'English'),
+                        ('HIN','Hindi'),
+                        )
+    
+    user = models.ForeignKey(User)
+    live_in = models.ForeignKey(City, null = True, blank = True)
+    work_at = models.CharField(max_length = 100, null = True, blank = True)
+    website = models.URLField(null = True, blank = True)
+    data_of_birth = models.DateField(null = True, blank = True)
+    gender = models.CharField(max_length = 1, choices = sex_choices, null = True, blank = True)
+    language = models.CharField(max_length = 5, choices = language_choices, null = True, blank = True)
+    Quote = models.CharField(max_length = 200, null = True, blank = True)
+    
+    def __str__(self):
+        return self.user.username
+    
+
+
+

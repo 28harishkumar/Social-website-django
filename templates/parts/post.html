@@ -62,8 +62,38 @@
 					</div>
 					<div class="post-status">
 						<p>{{ post.root_post.status }}</p>
-						{%if post.root_post.attachment %}
-						<img src="{{ post.root_post.attachment.url }}" width="100%">
+						{%if post.root_post.attachment_type == 'image' %}
+						<div class="embeded embeded-image">
+							<img src="{{ post.root_post.attachment.url }}" class="thumbnail">
+						</div>
+						{% endif %}
+						{%if post.root_post.attachment_type == 'audio' %}
+						<div class="embeded embeded-audio">
+							<audio controls>
+								 <source src="{{ post.root_post.attachment.url }}" type='audio/mp4'></source>
+								 <source src="{{ post.root_post.attachment.url }}" type='video/mp3'></source>
+								 <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
+								 <p>Your user agent does not support the HTML5 Audio element.</p>
+							</audio>
+						</div>
+						{% endif %}
+						{%if post.root_post.attachment_type == 'video' %}
+						<div class="embeded embeded-video">
+							<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" data-setup="{}" width="100%" height="400px">
+							    <source src="{{ post.root_post.attachment.url }}" type='video/mp4'></source>
+							    <source src="{{ post.root_post.attachment.url }}" type='video/flv'></source>
+							    <source src="{{ post.root_post.attachment.url }}" type='video/avi'></source>
+							    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+							</video>
+						</div>
+						{% endif %}
+						{%if post.root_post.attachment_type == 'file' %}
+						<div class="embeded embeded-file">
+							<div class="embeded-file-desc thumbnail">
+								<h5 style="font-weight: bold">{{ post.root_post.attachment.name|slice:"7:"|escape }}</h5>
+								<a href="{{ post.root_post.attachment.url }}" target="_blank" class="">Download</a>
+							</div>
+						</div>
 						{% endif %}
 					</div>
 				</div>

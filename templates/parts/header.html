@@ -14,20 +14,20 @@
 	    	<ul class="nav navbar-nav">
 	            <li class="active"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
 	        </ul>
-	        {% if not user.is_authenticated %}
+	        {% if not request.user.is_authenticated %}
 	        <ul class="nav navbar-nav navbar-right">
 	        	<li><a href="http://www.findalltogether.com/wp/about/">{% trans "About" %}</a></li>
         		<li><a href="http://www.findalltogether.com/wp/contact-us/">{% trans "Contact" %}</a></li>
         		<li><a href="{% url 'login' %}"><i class="fa fa-fw fa-sign-in"></i>{% trans 'Login' %}</a></li>
 	        </ul>
 	        {% endif %}
-	      	{% if user.is_authenticated %}
+	      	{% if request.user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
             	<li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
             	<li><a href="#"><i class="fa fa-bell"></i> Notifications</a></li>
                 <li>
                 	<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                		{{ user.name }}
+                		{{ request.user.name }}
                 		<span class="caret"></span>
                 	</a>
                 	<ul class="dropdown-menu">

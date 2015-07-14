@@ -122,7 +122,7 @@ class SetPassword(View):
                                   context_instance=RequestContext(request))
 
 class Timeline(View):
-    @method_decorator(login_required)
+    #@method_decorator(login_required)
     def get(self,request, user):
         posts = Post.objects.filter(user= user)
         user = get_object_or_404(User,pk = user)
@@ -131,7 +131,13 @@ class Timeline(View):
                                   context_instance=RequestContext(request))
 
 class Profile(View):
-    pass
+    def get(self,request, user):
+        posts = Post.objects.filter(user= user)
+        user = get_object_or_404(User,pk = user)
+        return render_to_response('user/timeline.html', 
+                                  {'posts':posts,'user':user}, 
+                                  context_instance=RequestContext(request))
+
 
 class TimelineStatus(View):
     pass

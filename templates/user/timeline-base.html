@@ -16,7 +16,7 @@
 	<nav class="timeline-menu">
 		<ul class="nav nav-tabs">
 		  <li><a href="{% url 'timeline' user.id %}">Timeline</a></li>
-		  <li><a href="#">Profile</a></li>
+		  <li><a href="{% url 'profile' user.id %}">Profile</a></li>
 		  <li><a href="#">Favorites</a></li>
 		  <li><a href="#">Likes</a></li>
 		  <li role="presentation" class="dropdown">
