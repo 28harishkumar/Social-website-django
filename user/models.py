@@ -6,7 +6,9 @@ from sorl.thumbnail import ImageField
 class User(AbstractUser,models.Model):
     AbstractUser._meta.get_field('email')._unique = True
     confirmation_code = models.CharField(max_length=34,null = True,blank = True)
-    followers = models.ManyToManyField('self', related_name = 'following') 
+    followers = models.ManyToManyField('self', 
+                                       symmetrical=False,
+                                       related_name = 'following') 
     profile_photo = ImageField(upload_to = 'user/profile', default = 'user/profile/default_profile.jpg')
     cover_image = ImageField(upload_to = 'user/cover', default = 'user/cover/default_cover.jpg')
     
@@ -23,19 +25,20 @@ class User(AbstractUser,models.Model):
             db_table = 'auth_user'
 
 """
-name 
+following followers
+quote
+
 email
+website
 live in 
 studied at
 work at
-website
+
+
 date of birth
 gender
 language
-quote
 Joined on
-follower
-following
 """
 
 class City(models.Model):
@@ -74,14 +77,14 @@ class Profile(models.Model):
                         ('HIN','Hindi'),
                         )
     
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     live_in = models.ForeignKey(City, null = True, blank = True)
     work_at = models.CharField(max_length = 100, null = True, blank = True)
     website = models.URLField(null = True, blank = True)
     data_of_birth = models.DateField(null = True, blank = True)
     gender = models.CharField(max_length = 1, choices = sex_choices, null = True, blank = True)
     language = models.CharField(max_length = 5, choices = language_choices, null = True, blank = True)
-    Quote = models.CharField(max_length = 200, null = True, blank = True)
+    quote = models.CharField(max_length = 200, null = True, blank = True)
     
     def __str__(self):
         return self.user.username

@@ -134,7 +134,7 @@ class Profile(View):
     def get(self,request, user):
         posts = Post.objects.filter(user= user)
         user = get_object_or_404(User,pk = user)
-        return render_to_response('user/timeline.html', 
+        return render_to_response('user/profile.html', 
                                   {'posts':posts,'user':user}, 
                                   context_instance=RequestContext(request))
 

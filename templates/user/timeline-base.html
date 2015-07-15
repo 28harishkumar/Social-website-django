@@ -40,7 +40,23 @@
 {% block left-sidebar %}
 <div class="col-lg-2 col-md-2 sidebar left-sidebar">
 	{% block left-sidebar-content%}
-	
+	<div class="follow">
+		<ul class="follow-count">
+			<li><a href="#">
+					<span class="pull-left small-blur">Followers</span>
+					<span class="pull-left">{{ user.followers.count }}</span>
+				</a>
+			</li>
+			<li><a href="#">
+					<span class="pull-left small-blur">Followings</span>
+					<span class="pull-left">{{ user.following.count }}</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div>
+		{{ user.profile.quote }}
+	</div>
 	{% endblock %}
 </div>
 {% endblock %}

@@ -20,6 +20,7 @@ class MyUserAdmin(UserAdmin):
         ('advance_info',{'fields':('confirmation_code',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
+        ('Subsriptions', {'fields': ('followers',)}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
 

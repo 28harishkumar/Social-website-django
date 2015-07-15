@@ -34,3 +34,18 @@
 .timeline-content{
 	float: left;
 }
+
+.follow{
+	clear: both;
+	width: 100%;
+}
+
+.follow .follow-count{
+	list-style: none;
+}
+
+
+
+
+
+
