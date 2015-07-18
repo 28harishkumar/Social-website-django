@@ -2,6 +2,35 @@
 	color: #9197a3;
 }
 
+.full{
+	width: 100%;
+}
+
+.half{
+	width: 50%;
+}
+
+.no-makeup{
+	margin:0;
+	padding:0;
+	text-decoration: none;
+}
+
+.no-makeup a{
+	margin:0;
+	padding:0;
+	text-decoration: none;
+}
+
+/**
+ * 	sidebar
+ */
+
+.mini-profile>img{
+	max-width: 150px;
+	margin:auto;
+}
+
 .dot{
 	font-size: 3px;
 	color: #428bca;

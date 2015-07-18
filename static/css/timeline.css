@@ -15,16 +15,16 @@
 .profile-photo-wrapper{
 	position: relative;
 	top: -120px;
-	left: 20px;
+	left: 100px;
 	float: left;
 }
 
 .timeline-menu{
 	position: relative;
 	display: block;
-  	left: 20px;
+  	left: 100px;
   	height: 40px;
-  	width: 97%;
+  	width: 92%;
 }
 
 .timeline-menu>ul{
@@ -33,6 +33,19 @@
 
 .timeline-content{
 	float: left;
+}
+
+/**
+ * 	left sidebar
+ */
+
+.left-sidebar span{
+	color: #0084B4;
+}
+
+.left-sidebar .fa{
+	width: 15px;
+	color: #8899a6;
 }
 
 .follow{

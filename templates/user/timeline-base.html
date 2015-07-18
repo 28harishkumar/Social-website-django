@@ -38,24 +38,51 @@
 {% endblock %}
 
 {% block left-sidebar %}
-<div class="col-lg-2 col-md-2 sidebar left-sidebar">
+<div class="col-lg-3 col-md-3 sidebar left-sidebar">
 	{% block left-sidebar-content%}
 	<div class="follow">
-		<ul class="follow-count">
-			<li><a href="#">
-					<span class="pull-left small-blur">Followers</span>
-					<span class="pull-left">{{ user.followers.count }}</span>
+		<ul class="follow-count no-makeup">
+			<li class="pull-left half"><a href="#">
+					<span class="pull-left small-blur full">Followers</span>
+					<span>{{ user.followers.count }}</span>
 				</a>
 			</li>
-			<li><a href="#">
-					<span class="pull-left small-blur">Followings</span>
-					<span class="pull-left">{{ user.following.count }}</span>
+			<li class="pull-left half"><a href="#">
+					<span class="pull-left small-blur full">Followings</span>
+					<span class="">{{ user.following.count }}</span>
 				</a>
 			</li>
 		</ul>
 	</div>
 	<div>
-		{{ user.profile.quote }}
+		<p>{{ user.profile.quote }}</p>
+	</div>
+	<div>
+		<span><i class="fa fa-envelope"></i> {{ user.email }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-link"></i> {{ user.profile.website }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-map-marker"></i> {{ user.profile.live_in }} | {{ user.profile.live_in.get_country_display }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-building-o"></i> {{ user.profile.studied_at }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-briefcase"></i> {{ user.profile.work_at }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-birthday-cake"></i> {{ user.profile.date_of_birth }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-male"></i> {{ user.profile.get_gender_display }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-language"></i> {{ user.profile.get_language_display }}</span>
+	</div>
+	<div>
+		<span><i class="fa fa-calendar"></i> {{ user.date_joined.date }}</span>
 	</div>
 	{% endblock %}
 </div>
